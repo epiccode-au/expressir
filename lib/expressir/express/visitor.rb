@@ -206,8 +206,10 @@ module Expressir
       def node_find(node, path)
         if node.is_a?(Enumerable)
           node.find { |item| item.find(path) }
-        else
+        elsif node.respond_to? :find
           node.find(path)
+        else
+          nil
         end
       end
 
